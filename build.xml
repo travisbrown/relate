@@ -73,7 +73,7 @@
     -->
 
     <target name="jar-with-dependencies">
-        <zip destfile="out.jar">
+        <zip destfile="dist/voyeur-with-dependencies.jar">
             <zipgroupfileset dir="libraries" includes="*.jar"/>
             <zipgroupfileset dir="dist" includes="VoyeurWrapper.jar"/>
             <zipgroupfileset dir="Jung/jung2-2_0_1" includes="*.jar"/> 
