@@ -1,0 +1,44 @@
+<html>
+<body>
+
+<h1><a name="Visualization Tool Help">Visualization Tool Help</a></h1>
+<p>Welcome to the Network Visualization Tool.  Use the tree at the side to navigate through this help, or simply scroll up and down.</p>
+<br></br>
+
+<h2><a name = "Mouse Modes">Mouse Modes</a></h2>
+
+<h3><a name = "Picking">Picking</a></h3>
+
+<p>This mouse mode allows one to simply click to select nodes.  Shift-clicking allows one to select multiple nodes, as does clicking, holding, and dragging a rectangle across the nodes one would like to select.  Selected nodes show up as red, and nodes that the selected node(s) are connected to show up as yellow. One can zoom in this mode using the mouse wheel (roll up to zoom out, roll down to zoom in).</p>
+
+<h3><a name = "Transforming">Transforming</a></h3>
+<p>In this mode, nodes may not be selected. Clicking and dragging translates the graph in the direction of mouse movement. One can rotate the graph by shift-clicking and dragging. One can zoom in this mode using the mouse wheel (roll up to zoom out, roll down to zoom in).</p>
+
+<br></br>
+
+<h2><a name = "Layouts">Layouts</a></h2>
+
+<h3><a name = "Layout Options">Layout Options</a></h3>
+
+<p><b>Circle:</b> positions nodes equally spaced on a regular circle dependent on node size.<br><b>Force:</b> iterative layout that usesFruchterman-Reingold force-directed algorithm to position nodes.  Nodes try to push each other apart, while edges have attractive forces.</br><br><b>Kamada-Kawai:</b> Implements the Kamada-Kawai algorithm for node layout.</br><br><b>Spring:</b> an iterative layout without a maximum number of iterations.  Treats each edge as a spring, allowing nodes to be dragged and then spring back into place. Nodes are originally assigned random X and Y positions on the graph.</br><br><b>ISOM:</b> Implements a self-organizing map layout algorithm, based on Meyer's self-organizing graph methods.</br></p>
+
+<br></br>
+
+<h2><a name = "Magnitude">Magnitude</a></h2>
+
+<h3><a name = "Number of Connections">Number of Connections</a></h3>
+<p>Shows the number of unique connections a node has to other nodes within that grouping (family/non-family/all).</p>
+
+<h3><a name = "Centrality Measures">Centrality Measures</a></h3>
+<p><b>Degree:</b> the number of links incident upon a node (i.e., the number of ties that a node has) divided by . Degree is often interpreted in terms of the immediate risk of node for catching whatever is flowing through the network (such as a virus, or some information).<br><b>Betweenness:</b> a measure of what fraction of shortest paths the node/edge is present on.  In other words, the higher between centrality a node/edge has, the more essential it is to traversing a graph in the shortest way possible.</br></p>
+
+<br></br>
+
+<h2><a name = "Which Nodes Are Shown?">Which Nodes Are Shown?</a></h2>
+
+<h3><a name = "Which Nodes Are Shown?">Family/Non-Family/All</></h3>
+
+<p><b>Family:</b> Filters out and shows only nodes that are in the writer's close family.<br><b>Non-Family:</b> Filters out and shows only nodes that are not in the writer's close family.</br><br><b>All:</b> Shows all nodes</br></p>
+
+</body>
+</html>
