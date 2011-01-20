@@ -1,3 +1,6 @@
+import java.io.InputStream;
+import javax.swing.*;
+
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,7 +28,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
-import javax.swing.ButtonGroup;
+/*import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -35,9 +38,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JRadioButtonMenuItem;*/
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 
 import org.apache.commons.collections15.Predicate;
 import org.apache.commons.collections15.Transformer;
@@ -64,7 +66,7 @@ import edu.uci.ics.jung.visualization.layout.PersistentLayoutImpl;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUI extends JApplet implements ActionListener {
 
 	//CONSTANTS_____________________
 	private final static int CIRCLE = 0;
@@ -104,8 +106,8 @@ public class GUI extends JFrame implements ActionListener {
 	ArrayList<String> includedFamilies = new ArrayList<String>();
 	ArrayList<String> currentViewFamilies = new ArrayList<String>();
 	
-	int width = 900;
-	int height = 650;
+	int width = 1280;
+	int height = 700;
 	private boolean directed = true;
 	private static final int BUFFER = 44;
 	private int currentLayout;
@@ -113,9 +115,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	private String filePath;
 	
-	public GUI() {
-		super("Graph View");
-		
+  public void init() {
 		this.setSize(width, height);
         setLayout(new BorderLayout());
         
@@ -223,8 +223,10 @@ public class GUI extends JFrame implements ActionListener {
 		viewOptionsPanel = new ViewOptionsPanel(this);
 		add(statusPanel, BorderLayout.SOUTH);
 		add(viewOptionsPanel, BorderLayout.EAST);
-	}
-	
+    embed = loadSourceFile();
+    setupGraph();
+  }
+
 	private void addActionsListeners() {
 		
         directedItem.addActionListener(this);
@@ -258,14 +260,14 @@ public class GUI extends JFrame implements ActionListener {
 		//get file to read data in from 
         g.embed = g.loadSourceFile();
         g.setupGraph();
-        g.pack();
+        //g.pack();
 		g.setVisible(true);
 	    
 	   
 
 	}
 
-	private void setupGraph()
+	public void setupGraph()
 	{
 		if(embed == null)
         {
@@ -303,8 +305,8 @@ public class GUI extends JFrame implements ActionListener {
 		pickingItem.setSelected(true);
 	}
 	
-	private StepBloomfield loadSourceFile() {
-		JFileChooser chooser = new JFileChooser();
+	public StepBloomfield loadSourceFile() {
+		/*JFileChooser chooser = new JFileChooser();
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
 	        "XML Files (*.xml)", "xml");
 	    chooser.setFileFilter(filter);
@@ -319,7 +321,8 @@ public class GUI extends JFrame implements ActionListener {
 		{
 	    	System.exit(0);
 	    }
-	    return null;
+	    return null;*/
+    return new StepBloomfield(getClass().getClassLoader().getResourceAsStream("texts/southey_VIZ.xml"));
 	}
 	
 	private void setupGraphTransformers() {
@@ -616,8 +619,8 @@ public class GUI extends JFrame implements ActionListener {
 		}
 		else if(e.getSource() == helpItem)
 		{
-			HelpDialog helpDialog = new HelpDialog(this, false);
-			helpDialog.show();
+			//HelpDialog helpDialog = new HelpDialog(this, false);
+			//helpDialog.show();
 			
 		}
 		else if(e.getSource() == changeSourceItem)
@@ -906,8 +909,8 @@ public class GUI extends JFrame implements ActionListener {
 	    //    
 	    if (directorySelect.showDialog(this, "Choose") == JFileChooser.APPROVE_OPTION) { 
 	    	String directoryPath = directorySelect.getSelectedFile().getAbsolutePath();
-	    	saveFiles = new SaveFileNamesDialog(this, true);
-			saveFiles.show();
+	    	//saveFiles = new SaveFileNamesDialog(this, true);
+			//saveFiles.show();
 			
 			if(saveFiles.isClickedOK())
 			{
