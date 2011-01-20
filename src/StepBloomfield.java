@@ -43,13 +43,18 @@ public class StepBloomfield {
 	
 	Graph<Node, Edge> g;
 	
+	public StepBloomfield(InputStream stream)
+	{
+		g = new DirectedSparseGraph<Node, Edge>();
+		loadData(stream);
+	}
+	
 	public StepBloomfield(String filePath)
 	{
 		g = new DirectedSparseGraph<Node, Edge>();
 		loadData(filePath);
 	}
-	
-	
+
 	public void setVariables(boolean all, boolean family)
 	{
 		this.all = all;
@@ -80,16 +85,31 @@ public class StepBloomfield {
 	/**
 	 * 	 * prompts user to select folder and then reads contacts.txt
 	 */
-	public void loadData(String filePath) 
-	{
+	public void loadData(String filePath) {
+    try {
+      this.loadData(new FileInputStream(filePath));
+		catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		} 
+		catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  }
+
+  public void loadData(InputStream stream) {
 		//String connection = null;
 		try {
 		
-			File edgeFile = new File(filePath);
-			
 	        DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-	        Document doc = docBuilder.parse (edgeFile);
+	        Document doc = docBuilder.parse (stream);
 	        
 	        doc.getDocumentElement().normalize();
 	        NodeList nodeList = doc.getDocumentElement().getChildNodes();
