@@ -88,15 +88,8 @@ public class StepBloomfield {
 	public void loadData(String filePath) {
     try {
       this.loadData(new FileInputStream(filePath));
-		catch (FileNotFoundException e) {
-		    e.printStackTrace();
-		} 
-		catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+    } catch (FileNotFoundException e) {
+		  e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
