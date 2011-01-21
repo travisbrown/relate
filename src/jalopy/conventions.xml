@@ -2,11 +2,11 @@
 <jalopy>
     <general>
         <compliance>
-            <version>13</version>
+            <version>14</version>
         </compliance>
         <style>
-            <description>Maven 2</description>
-            <name>Maven2</name>
+            <description>Sun Java Coding Convention</description>
+            <name>Sun</name>
         </style>
     </general>
     <inspector>
@@ -55,6 +55,7 @@
         </naming>
         <tips>
             <adhereToNamingConvention>false</adhereToNamingConvention>
+            <alwaysOverrideEquals>false</alwaysOverrideEquals>
             <alwaysOverrideHashCode>false</alwaysOverrideHashCode>
             <avoidThreadGroups>false</avoidThreadGroups>
             <declareCollectionComment>false</declareCollectionComment>
@@ -86,18 +87,18 @@
             <printerJavadoc>30000</printerJavadoc>
             <transform>30000</transform>
         </priority>
-        <showErrorStackTrace>true</showErrorStackTrace>
+        <showErrorStackTrace>false</showErrorStackTrace>
     </messages>
     <misc>
-        <threadCount>2</threadCount>
+        <threadCount>8</threadCount>
     </misc>
     <printer>
         <alignment>
             <methodCallChain>true</methodCallChain>
-            <parameterMethodDeclaration>false</parameterMethodDeclaration>
-            <ternaryOperator>true</ternaryOperator>
-            <variableAssignment>false</variableAssignment>
-            <variableIdentifier>false</variableIdentifier>
+            <parameterMethodDeclaration>true</parameterMethodDeclaration>
+            <ternaryOperator>false</ternaryOperator>
+            <variableAssignment>true</variableAssignment>
+            <variableIdentifier>true</variableIdentifier>
         </alignment>
         <backup>
             <directory>bak</directory>
@@ -110,7 +111,7 @@
                 <class>1</class>
                 <declaration>0</declaration>
                 <footer>1</footer>
-                <header>0</header>
+                <header>1</header>
                 <interface>1</interface>
                 <lastImport>1</lastImport>
                 <method>1</method>
@@ -128,7 +129,7 @@
                 <controlStatement>1</controlStatement>
                 <declaration>1</declaration>
                 <footer>0</footer>
-                <header>2</header>
+                <header>0</header>
             </before>
             <keepUpTo>1</keepUpTo>
         </blanklines>
@@ -138,10 +139,10 @@
                 <insertStatement>false</insertStatement>
             </empty>
             <insert>
-                <dowhile>true</dowhile>
-                <for>true</for>
-                <ifelse>true</ifelse>
-                <while>true</while>
+                <dowhile>false</dowhile>
+                <for>false</for>
+                <ifelse>false</ifelse>
+                <while>false</while>
             </insert>
             <remove>
                 <block>true</block>
@@ -151,8 +152,8 @@
                 <while>false</while>
             </remove>
             <treatDifferent>
-                <methodClass>true</methodClass>
-                <methodClassIfWrapped>true</methodClassIfWrapped>
+                <methodClass>false</methodClass>
+                <methodClassIfWrapped>false</methodClassIfWrapped>
             </treatDifferent>
         </braces>
         <chunks>
@@ -161,35 +162,27 @@
         </chunks>
         <comments>
             <format>
-                <multiline>false</multiline>
+                <multiline>true</multiline>
             </format>
             <javadoc>
                 <check>
                     <innerclass>false</innerclass>
-                    <tags>false</tags>
+                    <tags>true</tags>
                     <throwsTags>true</throwsTags>
                 </check>
                 <fieldsShort>false</fieldsShort>
                 <generate>
-                    <class>0</class>
-                    <constructor>0</constructor>
-                    <field>0</field>
-                    <method>0</method>
+                    <class>21</class>
+                    <constructor>21</constructor>
+                    <field>4</field>
+                    <method>21</method>
                 </generate>
-                <parseComments>false</parseComments>
+                <parseComments>true</parseComments>
                 <tags>
                     <in-line />
-                    <standard />
+                    <standard>@topazproject|@avalon</standard>
                 </tags>
                 <templates>
-                    <class>/**| * DOCUMENT ME!| *| * @author $author$| * @version $Revision$| */</class>
-                    <constructor>
-                        <bottom> */</bottom>
-                        <exception> * @throws $exceptionType$ DOCUMENT ME!</exception>
-                        <param> * @param $paramType$ DOCUMENT ME!</param>
-                        <top>/**| * Creates a new $objectType$ object.</top>
-                    </constructor>
-                    <interface>/**| * DOCUMENT ME!| *| * @author $author$| * @version $Revision$| */</interface>
                     <method>
                         <bottom> */</bottom>
                         <exception> * @throws $exceptionType$ DOCUMENT ME!</exception>
@@ -226,45 +219,46 @@
             <use>false</use>
         </footer>
         <header>
-            <keys>Tha Apache Software License</keys>
-            <smartMode>5</smartMode>
-            <text>/*| * Copyright 2001-2004 The Apache Software Foundation.| *| * Licensed under the Apache License, Version 2.0 (the "License");| * you may not use this file except in compliance with the License.| * You may obtain a copy of the License at| *| *      http://www.apache.org/licenses/LICENSE-2.0| *| * Unless required by applicable law or agreed to in writing, software| * distributed under the License is distributed on an "AS IS" BASIS,| * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.| * See the License for the specific language governing permissions and| * limitations under the License.| */</text>
+            <keys />
+            <smartMode>0</smartMode>
+            <text/>
             <use>false</use>
         </header>
         <history>
+            <method>timestamp</method>
             <policy>disabled</policy>
         </history>
         <imports>
             <grouping>
                 <defaultDepth>3</defaultDepth>
-                <packages>*:0|gnu:2|java:1|javax:1</packages>
+                <packages>java:2|javax:2|org:3|*:0</packages>
             </grouping>
-            <policy>disabled</policy>
+            <policy>expand</policy>
             <sort>true</sort>
         </imports>
         <indentation>
-            <caseFromSwitch>true</caseFromSwitch>
+            <caseFromSwitch>false</caseFromSwitch>
             <continuation>
                 <block>true</block>
-                <operator>false</operator>
+                <operator>true</operator>
             </continuation>
-            <firstColumnComments>false</firstColumnComments>
+            <firstColumnComments>true</firstColumnComments>
             <label>false</label>
             <policy>
                 <deep>true</deep>
             </policy>
             <sizes>
                 <braceCuddled>1</braceCuddled>
-                <braceLeft>0</braceLeft>
+                <braceLeft>1</braceLeft>
                 <braceRight>0</braceRight>
                 <braceRightAfter>1</braceRightAfter>
-                <continuation>4</continuation>
+                <continuation>1</continuation>
                 <deep>55</deep>
                 <extends>-1</extends>
-                <general>4</general>
+                <general>2</general>
                 <implements>-1</implements>
                 <leading>0</leading>
-                <tabs>8</tabs>
+                <tabs>2</tabs>
                 <throws>-1</throws>
                 <trailingComment>1</trailingComment>
             </sizes>
@@ -277,19 +271,19 @@
             <arrayBracketsAfterIdent>false</arrayBracketsAfterIdent>
             <forceFormatting>false</forceFormatting>
             <insertExpressionParentheses>true</insertExpressionParentheses>
-            <insertLoggingConditional>false</insertLoggingConditional>
+            <insertLoggingConditional>true</insertLoggingConditional>
             <insertTrailingNewline>true</insertTrailingNewline>
             <insertUID>false</insertUID>
         </misc>
         <sorting>
             <declaration>
-                <class>false</class>
-                <constructor>false</constructor>
+                <class>true</class>
+                <constructor>true</constructor>
                 <enable>false</enable>
-                <interface>false</interface>
-                <method>false</method>
+                <interface>true</interface>
+                <method>true</method>
                 <order>static|field|initializer|constructor|method|interface|class</order>
-                <variable>false</variable>
+                <variable>true</variable>
             </declaration>
             <modifier>
                 <enable>false</enable>
@@ -308,7 +302,7 @@
                 <bracketsTypes>false</bracketsTypes>
                 <caseColon>false</caseColon>
                 <operator>
-                    <not>true</not>
+                    <not>false</not>
                 </operator>
                 <parentheses>
                     <methodCall>false</methodCall>
@@ -327,7 +321,7 @@
                     <relational>true</relational>
                     <shift>true</shift>
                 </operator>
-                <parenthesis>true</parenthesis>
+                <parenthesis>false</parenthesis>
                 <typeCast>false</typeCast>
             </padding>
         </whitespace>
@@ -347,37 +341,37 @@
                     <throwsTypes>false</throwsTypes>
                 </after>
                 <before>
-                    <braceLeft>true</braceLeft>
-                    <extends>true</extends>
-                    <implements>true</implements>
-                    <throws>true</throws>
+                    <braceLeft>false</braceLeft>
+                    <extends>false</extends>
+                    <implements>false</implements>
+                    <throws>false</throws>
                 </before>
                 <parameter>
                     <methodCall>false</methodCall>
-                    <methodCallNested>true</methodCallNested>
+                    <methodCallNested>false</methodCallNested>
                     <methodDeclaration>false</methodDeclaration>
                 </parameter>
             </always>
             <general>
-                <beforeOperator>false</beforeOperator>
+                <beforeOperator>true</beforeOperator>
                 <enable>true</enable>
-                <lineLength>120</lineLength>
+                <lineLength>100</lineLength>
             </general>
             <ondemand>
                 <after>
                     <assignment>true</assignment>
                     <leftParenthesis>false</leftParenthesis>
-                    <parameter>true</parameter>
+                    <parameter>false</parameter>
                     <types>
-                        <extends>true</extends>
-                        <implements>true</implements>
-                        <throws>true</throws>
+                        <extends>false</extends>
+                        <implements>false</implements>
+                        <throws>false</throws>
                     </types>
                 </after>
                 <before>
                     <rightParenthesis>false</rightParenthesis>
                 </before>
-                <groupingParentheses>true</groupingParentheses>
+                <groupingParentheses>false</groupingParentheses>
             </ondemand>
         </wrapping>
     </printer>
