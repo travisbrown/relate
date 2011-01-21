@@ -3,4 +3,6 @@ build/*
 dist/*
 target/*
 tmp/*
+*.swp
+*.swo
 

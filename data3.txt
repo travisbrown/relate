@@ -1,4 +1,0 @@
-directed
-nonfamily
-fr
-degreeCentrality
