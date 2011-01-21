@@ -75,7 +75,9 @@ public class GUI extends JApplet implements ActionListener {
 	private final static int KKLAYOUT = 3;
 	private final static int FRLAYOUT = 4;
 	//______________________________
-	
+
+  private String currentPath;
+
 	StepBloomfield embed;
 	JPanel mainPanel;
 	JLabel showLabel, nodeNameLabel;
@@ -84,14 +86,15 @@ public class GUI extends JApplet implements ActionListener {
 	PersistentLayoutImpl<Node, Edge> persistLayout;
 	JMenuBar menuBar;
 	JMenu fileMenu, optionsMenu, helpMenu, mouseOptionSubMenu, 
-		displaySubMenu, magnitudeSubMenu, familyOptionsMenu;
+		displaySubMenu, magnitudeSubMenu, familyOptionsMenu, datasetMenu;
 	JCheckBoxMenuItem directedItem;
 	JMenuItem saveItem, loadItem, resetItem, changeSourceItem, exportItem, helpItem, quitItem;
+	JRadioButtonMenuItem southeyItem, bloomfieldItem;
 	JRadioButtonMenuItem familyOnly, nonFamilyOnly, allOnly;
 	JRadioButtonMenuItem circleItem, frItem, kkItem, springItem, isomItem;
 	JRadioButtonMenuItem numConnectionsItem, degreeCentrItem, betweenCentrItem;
 	JRadioButtonMenuItem pickingItem, transformingItem;
-	ButtonGroup magnitudeGroup, mouseGroup, displayGroup, familyGroup;
+	ButtonGroup magnitudeGroup, mouseGroup, displayGroup, familyGroup, datasetGroup;
 	StatusPanel statusPanel;
 
 	SaveFileNamesDialog saveFiles;
@@ -107,14 +110,18 @@ public class GUI extends JApplet implements ActionListener {
 	ArrayList<String> currentViewFamilies = new ArrayList<String>();
 	
 	int width = 1280;
-	int height = 700;
+	int height = 800;
 	private boolean directed = true;
 	private static final int BUFFER = 44;
 	private int currentLayout;
 	
 	
 	private String filePath;
-	
+
+  public GUI() {
+    this.currentPath = "texts/southey_VIZ.xml";
+  }
+
   public void init() {
 		this.setSize(width, height);
         setLayout(new BorderLayout());
@@ -142,6 +149,15 @@ public class GUI extends JApplet implements ActionListener {
         fileMenu.add(quitItem);
         
         //option menu set up
+        datasetMenu = new JMenu("Dataset");
+        southeyItem = new JRadioButtonMenuItem("Southey", true);
+        bloomfieldItem = new JRadioButtonMenuItem("Bloomfield");
+        datasetGroup = new ButtonGroup();
+        datasetGroup.add(southeyItem);
+        datasetGroup.add(bloomfieldItem);
+        datasetMenu.add(southeyItem);
+        datasetMenu.add(bloomfieldItem);
+        
         directedItem = new JCheckBoxMenuItem("Directed Graph", true);
         familyOptionsMenu = new JMenu("Show");
         familyGroup = new ButtonGroup();
@@ -197,6 +213,7 @@ public class GUI extends JApplet implements ActionListener {
         resetItem = new JMenuItem("Reset");
         
         optionsMenu.add(directedItem);
+        optionsMenu.add(datasetMenu);
         optionsMenu.add(familyOptionsMenu);
         optionsMenu.add(displaySubMenu);
         optionsMenu.add(magnitudeSubMenu);
@@ -234,6 +251,8 @@ public class GUI extends JApplet implements ActionListener {
         saveItem.addActionListener(this);
         loadItem.addActionListener(this);
         changeSourceItem.addActionListener(this);
+        southeyItem.addActionListener(this);
+        bloomfieldItem.addActionListener(this);
         familyOnly.addActionListener(this);
         nonFamilyOnly.addActionListener(this);
         allOnly.addActionListener(this);
@@ -304,7 +323,11 @@ public class GUI extends JApplet implements ActionListener {
 		numConnectionsItem.setSelected(true);
 		pickingItem.setSelected(true);
 	}
-	
+
+  public InputStream getResourceStream(String path) {
+    return getClass().getClassLoader().getResourceAsStream(path);
+  }
+
 	public StepBloomfield loadSourceFile() {
 		/*JFileChooser chooser = new JFileChooser();
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -322,7 +345,7 @@ public class GUI extends JApplet implements ActionListener {
 	    	System.exit(0);
 	    }
 	    return null;*/
-    return new StepBloomfield(getClass().getClassLoader().getResourceAsStream("texts/southey_VIZ.xml"));
+    return new StepBloomfield(this.getResourceStream(this.getCurrentPath()));
 	}
 	
 	private void setupGraphTransformers() {
@@ -494,7 +517,17 @@ public class GUI extends JApplet implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == familyOnly)
+		if(e.getSource() == southeyItem)
+		{
+      this.setCurrentPath("texts/southey_VIZ.xml");
+			resetDisplay(directed);
+		}
+		else if(e.getSource() == bloomfieldItem)
+		{
+      this.setCurrentPath("texts/bloomfield_VIZ.xml");
+			resetDisplay(directed);
+		}
+		else if(e.getSource() == familyOnly)
 		{
 			embed.setVariables(false, true);
 			resetDisplay(directed);
@@ -968,6 +1001,12 @@ public class GUI extends JApplet implements ActionListener {
 				optionsPrint.println("spring");
 			}
 			else if(currentLayout == ISOMLAYOUT){
+				optionsPrint.println("circle");
+			}
+			else if(currentLayout == SPRING){
+				optionsPrint.println("spring");
+			}
+			else if(currentLayout == ISOMLAYOUT){
 				optionsPrint.println("isom");
 			}
 			else if(currentLayout == KKLAYOUT){
@@ -1115,12 +1154,20 @@ public class GUI extends JApplet implements ActionListener {
 		return names;
 		
 	}
-	
+
+  public String getCurrentPath() {
+    return this.currentPath;
+  }
+
+  public void setCurrentPath(String path) {
+    this.currentPath = path;
+  }
+
 	private void resetDisplay(boolean directed)
 	{
 		embed.clear();
 		embed.setGraphType(directed);
-		embed.loadData(filePath);
+		embed.loadData(this.getResourceStream(this.getCurrentPath()));
 		if(numConnectionsItem.isSelected())
 		{
 			embed.setCountType(StepBloomfield.NUM_CONNECTIONS);
@@ -1141,3 +1188,4 @@ public class GUI extends JApplet implements ActionListener {
 	}
 	
 }
+
