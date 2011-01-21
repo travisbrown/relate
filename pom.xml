@@ -86,6 +86,14 @@
           </jvmArgs>
         </configuration>
       </plugin>-->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jalopy-maven-plugin</artifactId>
+        <version>1.0-alpha-1</version>
+        <configuration>
+          <convention>src/jalopy/conventions.xml</convention>
+        </configuration>
+      </plugin>
     </plugins>
     <resources>
       <resource>
@@ -115,7 +123,6 @@
       <artifactId>swing-layout</artifactId>
       <version>1.0.3</version>
     </dependency>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
